@@ -1,7 +1,11 @@
 import java.awt.*;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.util.Optional;
+import java.util.Scanner;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
@@ -22,8 +26,9 @@ public class HelloServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        // TODO: Use log() to put logs about request before doing anything
         // TODO: See how to add a form into index.jsp
+
+        logRequest(request);
 
         response.setContentType("text/html");
 
@@ -43,6 +48,14 @@ public class HelloServlet extends HttpServlet {
 
 
         solveMockWhenIsFalse(request, response);
+    }
+
+    private void logRequest(HttpServletRequest request) {
+
+        log(request.getRemoteAddr());
+        log(request.getHeader("User-Agent"));
+        log(request.getMethod());
+        log(request.getParameterMap().toString());
     }
 
     private void getMessage(HttpServletResponse response, String message) throws IOException {
@@ -89,8 +102,8 @@ public class HelloServlet extends HttpServlet {
             return ;
         }
 
-        // TODO: Get content of repoFile instead of okMessage and create HTML page from it
-        getMessage(response, okMessage);
+        String htmlResponse = buildHTMLStringWhenEverythingWasOk(repoFile.get());
+        getMessage(response, htmlResponse);
     }
 
     private Optional<File> getRepoFile() {
@@ -103,6 +116,29 @@ public class HelloServlet extends HttpServlet {
         }
 
         return Optional.empty();
+    }
+
+    private String buildHTMLStringWhenEverythingWasOk(File file) {
+
+        StringBuilder builder = new StringBuilder();
+
+        try {
+
+            Scanner reader = new Scanner(file);
+            String s ;
+
+            while(reader.hasNextLine()) {
+                s = reader.nextLine();
+                builder.append(s);
+                builder.append("\n");
+            }
+
+        } catch (Exception e) {
+
+            return errorMessage;
+        }
+
+        return builder.toString();
     }
 
     private boolean solveWhenSyncIsTrue(String value, String key, File file) {
