@@ -1,32 +1,29 @@
-import java.awt.*;
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.ByteBuffer;
+import java.nio.channels.AsynchronousFileChannel;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.sql.Timestamp;
 import java.util.Optional;
 import java.util.Scanner;
+import java.util.concurrent.Future;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
 @WebServlet(value = "/hello-servlet")
 public class HelloServlet extends HttpServlet {
     private String confirmationMessage;
-    private String okMessage;
     private String errorMessage;
     private String repositoryFile;
 
     public void init() {
 
         confirmationMessage = "Mesaj de confirmare!";
-        okMessage = "OK!";
         errorMessage = "Error!";
         repositoryFile = "D://Projects/Java_MasterAnu1Sem1/Laborator1/src/main/resources/repoFile.txt";
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-        // TODO: See how to add a form into index.jsp
 
         logRequest(request);
 
@@ -130,7 +127,7 @@ public class HelloServlet extends HttpServlet {
             while(reader.hasNextLine()) {
                 s = reader.nextLine();
                 builder.append(s);
-                builder.append("\n");
+                builder.append("<br/>");
             }
 
         } catch (Exception e) {
@@ -166,9 +163,32 @@ public class HelloServlet extends HttpServlet {
         return true;
     }
 
-    private boolean solveWhenSyncIsFalse(String value, String key, File file) {
+    private boolean solveWhenSyncIsFalse(String value, String key, File file) throws IOException {
 
-        // TODO: Create unsync appending method to file
+        Path path = file.toPath();
+
+        int valueAsInt = Integer.parseInt(value);
+
+        if(valueAsInt > 0) {
+
+            --valueAsInt;
+
+            ByteBuffer buffer = ByteBuffer.allocate(1024);
+            buffer.put((key + " " + getTimeStamp() + "\n").getBytes());
+            buffer.flip();
+
+            AsynchronousFileChannel asyncChannel = AsynchronousFileChannel.open(path, StandardOpenOption.WRITE);
+
+            Future<Integer> future = asyncChannel.write(buffer, file.length());
+
+            solveWhenSyncIsFalse(Integer.toString(valueAsInt), key, file);
+
+            while(!future.isDone()) {
+                log("Wait...");
+            }
+
+            buffer.clear();
+        }
 
         return true;
     }
