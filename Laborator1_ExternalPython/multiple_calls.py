@@ -9,9 +9,9 @@ async def main():
 
     async with aiohttp.ClientSession() as session:
 
-        for number in range(1, 10):
-            pokemon_url = f'http://localhost:8080/Laborator1-1.0-SNAPSHOT/hello-servlet?mock=false&value=1000&key={number}&sync=false'
-            async with session.get(pokemon_url) as resp:
+        for number in range(1, 1000):
+            res = f'http://localhost:8080/Laborator1-1.0-SNAPSHOT/hello-servlet?mock=false&value=10&key={number}&sync=true'
+            async with session.get(res) as resp:
                 print(resp)
 
 asyncio.run(main())
