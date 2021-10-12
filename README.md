@@ -22,3 +22,6 @@ Pentru al treile punct, cateva rezultate sunt:
 - 500: 12.132383584976196 seconds
 - 1000: 46.92441248893738 seconds
 
+O observatie pe care o putem face pe datele de mai sus (reprezentate in graficul de mai jos), ar fi ca pentru numar mic de threaduri concurente (un volum mai mic de requesturi venite simultan), este mai buna o abordare sincrona, in timp ce pentru un numar mai mare de threaduri concurente (un volum mai mare de requesturi venite simultan), o abordare asincrona va fi castigatoare.
+
+![alt text](Laborator1_Punct3.png)
