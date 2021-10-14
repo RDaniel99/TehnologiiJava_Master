@@ -9,11 +9,11 @@
 <body>
 <h1><%= "Insert new record:" %></h1>
 <br/>
-<form action="get-input">
+<form action="get-input" method="post">
     Category:
     <select name="category">
         <c:forEach items="${listCategory}" var="category">
-            <option value="${category.id}">${category.name}</option>
+            <option value="${category.name}">${category.name}</option>
         </c:forEach>
     </select>
     <br/><br/>
