@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+<h:head/>
+<h:body>
+
+    <!-- STUDENTS SECTION -->
+    <h1>Students Tabel</h1>
+    <h:form>
+        <h:dataTable value="#{student.studentList}" var="s">
+
+            <h:column>
+
+                <f:facet name="header">Name</f:facet>
+                #{s.name}
+
+            </h:column>
+
+            <h:column>
+
+                <f:facet name="header">Exams</f:facet>
+                #{s.exams}
+
+            </h:column>
+
+            <h:column>
+
+                <f:facet name="header">Action</f:facet>
+
+                <h:commandLink value="Delete" action="#{student.deleteAction(s)}" />
+
+            </h:column>
+
+        </h:dataTable>
+
+        <h3>Enter Student</h3>
+        <table>
+            <tr>
+                <td>Student name :</td>
+                <td><h:inputText size="10" value="#{student.name}" /></td>
+            </tr>
+            <tr>
+                <td>Exams :</td>
+                <td><h:inputText size="20" value="#{student.exams}" /></td>
+            </tr>
+        </table>
+
+        <h:commandButton value="Add" action="#{student.addAction}" />
+
+    </h:form>
+
+    <!-- EXAMS SECTION -->
+    <h1>Students Tabel</h1>
+    <h:form>
+        <h:dataTable value="#{exam.examList}" var="e">
+
+            <h:column>
+
+                <f:facet name="header">Name</f:facet>
+                #{e.name}
+
+            </h:column>
+
+            <h:column>
+
+                <f:facet name="header">Start Hour</f:facet>
+                #{e.startHour}
+
+            </h:column>
+
+            <h:column>
+
+                <f:facet name="header">Duration (Hours)</f:facet>
+                #{e.duration}
+
+            </h:column>
+
+            <h:column>
+
+                <f:facet name="header">Action</f:facet>
+
+                <h:commandLink value="Delete" action="#{exam.deleteAction(e)}" />
+
+            </h:column>
+
+        </h:dataTable>
+
+        <h3>Enter Exam</h3>
+        <table>
+            <tr>
+                <td>Exam name :</td>
+                <td><h:inputText size="10" value="#{exam.name}" /></td>
+            </tr>
+            <tr>
+                <td>Start hour :</td>
+                <td><h:inputText size="10" value="#{exam.startHour}" /></td>
+            </tr>
+            <tr>
+                <td>Duration (Hours) :</td>
+                <td><h:inputText size="10" value="#{exam.duration}" /></td>
+            </tr>
+        </table>
+
+        <h:commandButton value="Add" action="#{exam.addAction}" />
+
+    </h:form>
+</h:body>
+
+</html>
