@@ -16,6 +16,13 @@
 
             <h:column>
 
+                <f:facet name="header">Id</f:facet>
+                #{s.id}
+
+            </h:column>
+
+            <h:column>
+
                 <f:facet name="header">Name</f:facet>
                 #{s.name}
 
@@ -55,7 +62,7 @@
     </h:form>
 
     <!-- EXAMS SECTION -->
-    <h1>Students Tabel</h1>
+    <h1>Exams Tabel</h1>
     <h:form>
         <h:dataTable value="#{exam.examList}" var="e">
 

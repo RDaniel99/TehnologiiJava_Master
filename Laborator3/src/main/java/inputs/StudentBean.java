@@ -1,5 +1,7 @@
 package inputs;
 
+import database.Database;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
@@ -14,18 +16,15 @@ public class StudentBean implements Serializable {
 
     String name;
     String exams;
+    Integer id;
 
-    private static final ArrayList<Student> studentList =
-            new ArrayList<>(Arrays.asList(
-
-                    new Student("Name1", "Exams1"),
-                    new Student("Name2", "Exams2"),
-                    new Student("Name3", "Exams3")
-            ));
+    private static final ArrayList<Student> studentList = Database.getINSTANCE().getStudentList();
 
     public String addAction() {
 
-        Student student = new Student(this.name, this.exams);
+        Student student = new Student(this.id, this.name, this.exams);
+
+        Database.getINSTANCE().storeStudent(student);
 
         studentList.add(student);
 
@@ -33,6 +32,8 @@ public class StudentBean implements Serializable {
     }
 
     public String deleteAction(Student student) {
+
+        Database.getINSTANCE().deleteStudent(student);
 
         studentList.remove(student);
 
@@ -55,6 +56,14 @@ public class StudentBean implements Serializable {
         this.exams = exams;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public ArrayList<Student> getStudentList() {
         return studentList;
     }
@@ -63,8 +72,10 @@ public class StudentBean implements Serializable {
 
         String name;
         String exams;
+        Integer id;
 
-        public Student(String name, String exams) {
+        public Student(Integer id, String name, String exams) {
+            this.id = id;
             this.name = name;
             this.exams = exams;
         }
@@ -83,6 +94,14 @@ public class StudentBean implements Serializable {
 
         public void setExams(String exams) {
             this.exams = exams;
+        }
+
+        public Integer getId() {
+            return id;
+        }
+
+        public void setId(Integer id) {
+            this.id = id;
         }
     }
 }
