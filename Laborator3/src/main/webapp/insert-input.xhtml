@@ -68,6 +68,13 @@
 
             <h:column>
 
+                <f:facet name="header">Id</f:facet>
+                #{e.id}
+
+            </h:column>
+
+            <h:column>
+
                 <f:facet name="header">Name</f:facet>
                 #{e.name}
 
@@ -115,6 +122,7 @@
 
         <h:commandButton value="Add" action="#{exam.addAction}" />
 
+        <h:button value="Send" onclick="results"/>
     </h:form>
 </h:body>
 

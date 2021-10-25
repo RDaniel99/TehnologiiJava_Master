@@ -1,5 +1,6 @@
 package database;
 
+import inputs.ExamBean;
 import inputs.StudentBean;
 
 import java.sql.Connection;
@@ -13,9 +14,12 @@ public class Database {
     private static Database INSTANCE;
     private Connection connection = null;
 
-    private String querySelectAllStudents = "SELECT * FROM students";
-    private String queryInsertStudent = "INSERT INTO students(name, exams) VALUES(\"%s\", \"%s\")";
-    private String queryDeleteStudent = "DELETE FROM students where id = %d";
+    private final String querySelectAllStudents = "SELECT * FROM students";
+    private final String querySelectAllExams = "SELECT * FROM exams";
+    private final String queryInsertStudent = "INSERT INTO students(name, exams) VALUES(\"%s\", \"%s\")";
+    private final String queryInsertExam = "INSERT INTO exams(name, startHour, duration) VALUES(\"%s\", %d, %d)";
+    private final String queryDeleteStudent = "DELETE FROM students where id = %d";
+    private final String queryDeleteExam = "DELETE FROM exams where id = %d";
 
     private Database() {
         try {
@@ -62,6 +66,31 @@ public class Database {
         return studentList;
     }
 
+    public ArrayList<ExamBean.Exam> getExamList() {
+        ArrayList<ExamBean.Exam> examList = new ArrayList<>();
+
+        try {
+            Statement stmt = getINSTANCE().connection.createStatement();
+            ResultSet rs = stmt.executeQuery(querySelectAllExams);
+
+            while (rs.next()) {
+                Integer id = rs.getInt("id");
+                String name = rs.getString("name");
+                Integer startHour = rs.getInt("startHour");
+                Integer duration = rs.getInt("duration");
+
+                examList.add(new ExamBean.Exam(id, name, startHour, duration));
+            }
+
+            stmt.close();
+        }
+        catch(Exception e) {
+            System.out.println("Ceva nu a mers bine");
+        }
+
+        return examList;
+    }
+
     public void storeStudent(StudentBean.Student student) {
         try {
             Statement stmt = getINSTANCE().connection.createStatement();
@@ -78,10 +107,36 @@ public class Database {
         }
     }
 
+    public void storeExam(ExamBean.Exam exam) {
+        try {
+            Statement stmt = getINSTANCE().connection.createStatement();
+            stmt.executeUpdate(String.format(queryInsertExam, exam.getName(), exam.getStartHour(), exam.getDuration()),
+                    Statement.RETURN_GENERATED_KEYS);
+
+            ResultSet rs = stmt.getGeneratedKeys();
+            if(rs.next()) {
+                exam.setId(rs.getInt(1));
+            }
+        }
+        catch(Exception e) {
+            System.out.println("Ceva nu a mers bine");
+        }
+    }
+
     public void deleteStudent(StudentBean.Student student) {
         try {
             Statement stmt = getINSTANCE().connection.createStatement();
             stmt.executeUpdate(String.format(queryDeleteStudent, student.getId()));
+        }
+        catch (Exception e) {
+            System.out.println("Ceva nu a mers bine");
+        }
+    }
+
+    public void deleteExam(ExamBean.Exam exam) {
+        try {
+            Statement stmt = getINSTANCE().connection.createStatement();
+            stmt.executeUpdate(String.format(queryDeleteExam, exam.getId()));
         }
         catch (Exception e) {
             System.out.println("Ceva nu a mers bine");
