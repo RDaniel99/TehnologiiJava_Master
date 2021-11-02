@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<f:view>
+    <ui:composition template="dataView.xhtml">
+        <ui:define name="tableName">Student</ui:define>
+        <ui:define name="items">#{student.studentList}</ui:define>
+        <ui:define name="funcReference">#{student.deleteAction}</ui:define>
+        <ui:define name="restOfCode">
+            <h:column>
+
+                <f:facet name="header">Id</f:facet>
+                #{item.id}
+
+            </h:column>
+
+            <h:column>
+
+                <f:facet name="header">Name</f:facet>
+                #{item.name}
+
+            </h:column>
+
+            <h:column>
+
+                <f:facet name="header">Exams</f:facet>
+                #{item.exams}
+
+            </h:column>
+        </ui:define>
+        <ui:define name="restOfCode">
+            <h3>Enter Student</h3>
+            <table>
+                <tr>
+                    <td>Student name :</td>
+                    <td><h:inputText size="10" value="#{student.name}" /></td>
+                </tr>
+                <tr>
+                    <td>Exams :</td>
+                    <td><h:inputText size="20" value="#{student.exams}" /></td>
+                </tr>
+            </table>
+
+            <h:commandButton value="Add" action="#{student.addAction}" />
+        </ui:define>
+    </ui:composition>
+</f:view>
+</html>

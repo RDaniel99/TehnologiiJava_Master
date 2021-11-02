@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
+    <h:head> <title> page.xhtml: Laborator 4 </title> </h:head>
+    <h:body>
+        <p:layout fullPage="true" >
+            <!-- header -->
+            <p:layoutUnit position="north">
+            <ui:insert name="header">
+                <ui:include src="/WEB-INF/decorators/header.xhtml" />
+            </ui:insert>
+            </p:layoutUnit>
+            <!-- center -->
+            <p:layoutUnit position="center">
+                <ui:include src="/WEB-INF/decorators/menuBar.xhtml"/>
+                <ui:insert name="content"> Page Content </ui:insert>
+            </p:layoutUnit>
+            <!-- footer -->
+            <p:layoutUnit position="south">
+                <ui:insert name="footer">
+                    <ui:include src="/WEB-INF/decorators/footer.xhtml" />
+                </ui:insert>
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+</f:view>
+
+</html>

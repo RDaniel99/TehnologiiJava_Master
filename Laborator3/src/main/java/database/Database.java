@@ -24,9 +24,13 @@ public class Database {
     private Database() {
         try {
 
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/laborator3_java?characterEncoding=latin1&useConfigs=maxPerformance&autoReconnect=true&useSSL=false",
-                    "root", "password");
+            javax.naming.InitialContext ctx = new javax.naming.InitialContext();
+            javax.sql.DataSource ds = (javax.sql.DataSource)ctx.lookup("jdbc/lab4");
+            java.sql.Connection conn = ds.getConnection();
+
+            //Class.forName("com.mysql.jdbc.Driver");
+            connection = conn;//DriverManager.getConnection("jdbc:mysql://localhost:3306/laborator3_java?characterEncoding=latin1&useConfigs=maxPerformance&autoReconnect=true&useSSL=false",
+                    //"root", "password");
         }
         catch (Exception e) {
             System.out.println("Ceva nu e bine la BD");
