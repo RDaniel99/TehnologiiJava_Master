@@ -1,5 +1,25 @@
 # TehnologiiJava_Master
 
+## Laborator 3: Finalizat complet
+
+Punctul 1:
+
+Unui student trebuie sa i se atribuie un nume si o lista de id-uri de examene, separate prin virgula, fara spatii.
+Unui examen trebuie sa i se atribuie un nume, o ora (fixa) de inceput si un numar de minute pentru durata.
+Tabelele sunt tinute in MySQL.
+Pentru interfata, s-a folosit primefaces unde a fost cazul.
+Ca si componenta non-triviala JSF, s-a folosit data table.
+
+Punctul 2:
+
+Ideea algoritmului: Pentru fiecare pereche de examene E1 si E2, construiesc graful in care exista muchie intre E1 si E2 doar daca E1 si E2 se suprapun si exista un student S care vrea sa participe atat la E1, cat si la E2.
+Apoi, acest graf il "sparg" in componente conexe. Din fiecare componenta conexa, aleg un subset de noduri astfel incat acestea sa nu fie conectate prin muchie si numarul de noduri alese sa fie maxim. Daca nodurile (=examenele) nu sunt conectate prin muchie, inseamna ca acestea pot fi in aceeasi zi, indiferent daca se suprapun sau nu. Cu atat mai mult, nu va exista conflict intre doua examene din componente conexe diferite.
+
+## OLD
+
+## Laborator 2: Finalizat aproape complet (mai putin ultimul punct)
+- prezentat live
+
 ## Laborator 1: Finalizat complet (Foldere: Laborator1 si Laborator1_ExternalPython)
 Servletul creat pentru rezolvarea primului punct este HelloServlet.
 Acesta primeste datele din formul din index.jsp pe care le proceseaza conform enuntului.
