@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+>
+<h:head/>
+<h:body>
+
+    <ui:composition template="dataView.xhtml">
+
+        <ui:param name="function" value="#{exam.examList}"/>
+
+        <ui:define name="dataview">
+
+            <p:column headerText="Id">
+                <h:outputText value="#{var.id}"/>
+            </p:column>
+
+            <p:column headerText="Name">
+                <h:outputText value="#{var.name}"/>
+            </p:column>
+
+            <p:column headerText="Start hour">
+                <h:outputText value="#{var.startHour}"/>
+            </p:column>
+
+            <p:column headerText="Duration">
+                <h:outputText value="#{var.duration}"/>
+            </p:column>
+
+            <p:column headerText="Delete">
+                <h:commandButton value="Delete" action="#{exam.deleteAction(var)}" />
+            </p:column>
+
+        </ui:define>
+
+        <ui:define name="dataedit">
+            <h3>Enter Exam</h3>
+            <table>
+                <tr>
+                    <td>Exam name :</td>
+                    <td><h:inputText size="10" value="#{exam.name}" /></td>
+                </tr>
+                <tr>
+                    <td>Start hour :</td>
+                    <td><h:inputText size="20" value="#{exam.startHour}" /></td>
+                </tr>
+                <tr>
+                    <td>Duration :</td>
+                    <td><h:inputText size="10" value="#{exam.duration}" /></td>
+                </tr>
+            </table>
+
+            <h:commandButton value="Add" action="#{exam.addAction}" />
+        </ui:define>
+    </ui:composition>
+
+</h:body>
+
+</html>

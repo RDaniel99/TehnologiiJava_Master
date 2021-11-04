@@ -4,8 +4,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 <f:view>
-    <h:outputLabel value="Header"/>
+    <ui:composition>
+        <h:form>
+            <h:panelGrid columns = "2">
+                Language :
+                <h:selectOneMenu value = "#{userData.locale}" onchange = "submit()"
+                                 valueChangeListener = "#{userData.localeChanged}">
+                    <f:selectItems value = "#{userData.countries}" />
+                </h:selectOneMenu>
+            </h:panelGrid>
+        </h:form>
+        <p:button outcome="students" value="Students"/>
+        <p:button outcome="exams" value="Exams"/>
+    </ui:composition>
 </f:view>
 </html>

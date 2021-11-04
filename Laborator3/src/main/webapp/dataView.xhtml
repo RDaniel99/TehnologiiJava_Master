@@ -2,41 +2,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
-<f:view>
-    <composite:interface>
-        <composite:attribute name="items"/>
-        <composite:attribute name="funcReference"/>
-        <composite:attribute name="tabelName"/>
-        <composite:attribute name="restOfCode"/>
-        <composite:attribute name="actionCode"/>
-    </composite:interface>
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-    <composite:implementation>
-        <h1>#{cc.attrs.tabelName} tabel </h1>
-        <h:form>
-            <h:dataTable value="#{cc.attrs.items}" var="item">
-
-                #{cc.attrs.restOfCode}
-
-                <h:column>
-
-                    <f:facet name="header">Action</f:facet>
-
-                    <h:commandLink value="Delete" action="#{cc.attrs.funcReference(item)}" />
-
-                </h:column>
-
-            </h:dataTable>
-
-            #{cc.attrs.actionCode}
-
+    <ui:composition>
+        <h:form id="dataViewTable">
+            <p:dataTable var="var" value="#{function}">
+                <ui:insert name="dataview">
+                    Data view
+                </ui:insert>
+            </p:dataTable>
+            <ui:insert name="dataedit">
+                Data edit
+            </ui:insert>
         </h:form>
-    </composite:implementation>
-</f:view>
+    </ui:composition>
 </html>

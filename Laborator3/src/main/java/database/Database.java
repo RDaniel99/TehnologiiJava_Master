@@ -3,6 +3,8 @@ package database;
 import inputs.ExamBean;
 import inputs.StudentBean;
 
+import javax.annotation.Resource;
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -12,6 +14,9 @@ import java.util.ArrayList;
 public class Database {
 
     private static Database INSTANCE;
+
+    //@Resource(name="jdbc/lab4", lookup = "jdbc/lab4")
+    //private DataSource ds;
     private Connection connection = null;
 
     private final String querySelectAllStudents = "SELECT * FROM students";
@@ -26,10 +31,11 @@ public class Database {
 
             javax.naming.InitialContext ctx = new javax.naming.InitialContext();
             javax.sql.DataSource ds = (javax.sql.DataSource)ctx.lookup("jdbc/lab4");
-            java.sql.Connection conn = ds.getConnection();
+            // @Resource
+            // DataSource ds;
 
             //Class.forName("com.mysql.jdbc.Driver");
-            connection = conn;//DriverManager.getConnection("jdbc:mysql://localhost:3306/laborator3_java?characterEncoding=latin1&useConfigs=maxPerformance&autoReconnect=true&useSSL=false",
+            connection = ds.getConnection();//DriverManager.getConnection("jdbc:mysql://localhost:3306/laborator3_java?characterEncoding=latin1&useConfigs=maxPerformance&autoReconnect=true&useSSL=false",
                     //"root", "password");
         }
         catch (Exception e) {
