@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+<h:head>
+
+</h:head>
+<h:body>
+    <ui:composition template="/templates/createexam.xhtml">
+
+        <ui:param name="function" value="#{examBean.saveExamPresentation(presentation)}"/>
+
+        <ui:define name="formcontent">
+
+            <p>Create Presentation:</p>
+            <p:outputLabel for="name" value="Name"/>
+            <p:inputText id="name" value="#{presentation.name}" required="true"/>
+            <p:message for="name"/>
+
+            <p:outputLabel for="powerpoint" value="Power Point"/>
+            <p:selectBooleanButton id="powerpoint" value="#{presentation.powerpoint}" onLabel="Yes" offLabel="No"
+                                   onIcon="ui-icon-check" offIcon="ui-icon-close"/>
+            <p:message for="powerpoint"/>
+        </ui:define>
+
+    </ui:composition>
+</h:body>
+</html>

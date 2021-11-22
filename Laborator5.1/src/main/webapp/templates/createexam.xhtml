@@ -10,14 +10,15 @@
 
     <ui:define name="content">
 
-        <h:form id="dataViewTable">
-            <p:growl id="msgs" showDetail="true"/>
-            <p:dataTable editable="true" var="var" value="#{function}">
-                <ui:insert name="dataview">
-                    <p:ajax event="rowEdit" listener="#{rowEdit}" update=":dataViewTable:msgs"/>
-                    <p:ajax event="rowCancel" listener="#{rowCancel}" update=":dataViewTable:msgs"/>
+        <h:form id="dataEditForm">
+            <p:growl id="msg" showDetail="true" skipDetailIfEqualsSummary="true"/>
+
+            <h:panelGrid>
+                <ui:insert name="formcontent">
+                    Data editor
                 </ui:insert>
-            </p:dataTable>
+                <p:commandButton value="Create" action="#{function}" update="msg"/>
+            </h:panelGrid>
         </h:form>
 
     </ui:define>
