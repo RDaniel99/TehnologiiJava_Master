@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:tp="http://java.sun.com/jsf/composite/compos"
+>
+<ui:composition template="/page.xhtml">
+
+    <ui:define name="content">
+
+        <h:form id="dataViewTable">
+            <p:growl id="msgs" showDetail="true"/>
+
+            <h1>Search Exams</h1>
+            <h:form>
+                <h5 class="p-mt-0">Name</h5>
+                <p:selectBooleanCheckbox value="#{search.name}" itemLabel="Name"/>
+
+                <h5 class="p-mt-0">Duration</h5>
+                <p:selectBooleanCheckbox value="#{search.duration}" itemLabel="Duration"/>
+
+                <h5 class="p-mt-0">Day In Exam Session</h5>
+                <p:selectBooleanCheckbox value="#{search.dayInExamSession}" itemLabel="DayInExamSession"/>
+
+                <p:commandButton
+                        title="Search"
+                        action ="#{examBean.getExamListPresentationBySearchCriterias(search)}"
+                        ajax="false"/>
+
+            </h:form>
+            <div class="card">
+                <p:growl id="msg" showDetail="true" skipDetailIfEqualsSummary="true"/>
+                <p:dataTable editable="true" var="var" value="#{function}">
+                    <ui:insert name="dataview">
+                        <p:ajax event="rowEdit" listener="#{rowEdit}" update=":dataViewTable:msgs"/>
+                        <p:ajax event="rowEditCancel" listener="#{rowCancel}" update=":dataViewTable:msgs"/>
+
+                        Data view
+                    </ui:insert>
+                </p:dataTable>
+            </div>
+        </h:form>
+
+        <h:form id="dataViewTable2">
+            <p:growl id="msgs2" showDetail="true"/>
+
+            <div class="card">
+                <p:growl id="msg2" showDetail="true" skipDetailIfEqualsSummary="true"/>
+                <p:dataTable editable="true" var="var" value="#{function2}">
+                    <ui:insert name="dataview2">
+                        <p:ajax event="rowEdit" listener="#{rowEdit}" update=":dataViewTable:msgs"/>
+                        <p:ajax event="rowEditCancel" listener="#{rowCancel}" update=":dataViewTable:msgs"/>
+                    </ui:insert>
+                </p:dataTable>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,53 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:tp="http://java.sun.com/jsf/composite/compos"
+>
+
+<h:head>
+</h:head>
+<h:body>
+
+
+    <ui:composition template="/templates/dataview.xhtml">
+
+        <ui:param name="function" value="#{studentBean.getStudentList()}"/>
+        <ui:param name="rowEdit" value="#{studentBean.updateRow}"/>
+        <ui:param name="rowCancel" value="#{studentBean.rowCancel}"/>
+
+        <ui:define name="dataview">
+
+            <p:column headerText="Id">
+                <h:outputText value="#{var.id}"/>
+            </p:column>
+
+            <p:column headerText="Name">
+                <h:outputText value="#{var.name}"/>
+            </p:column>
+
+            <p:column headerText="Exams">
+                <p:selectOneMenu id="listaIdExams" value="#{examStudentBean.examId}" required="true">
+                    <f:selectItems value="#{var.exams}"
+                                   var="exam"
+                                   itemLabel="#{exam.name}"
+                                   itemValue="#{exam.name}"/>
+                </p:selectOneMenu>
+            </p:column>
+
+            <p:column>
+                <p:commandButton icon="ui-icon-trash"
+                                 title="Delete this student"
+                                 actionListener="#{studentBean.remove(var)}"
+                                 ajax="false"/>
+            </p:column>
+
+            <p:column style="width:6rem">
+                <p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
+            </p:column>
+
+        </ui:define>
+    </ui:composition>
+</h:body>
+
+</html>

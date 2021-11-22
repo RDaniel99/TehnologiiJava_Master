@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:tp="http://java.sun.com/jsf/composite/compos"
+>
+<ui:composition template="basicPage.xhtml">
+
+    <ui:define name="content">
+
+        <h:form id="viewTable">
+            <p:growl id="rid" showDetail="true"/>
+
+            <div>
+                <p:growl id="row" showDetail="true" skipDetailIfEqualsSummary="true"/>
+                <p:dataTable editable="true" var="var" value="#{function}">
+                    <ui:insert name="dataview">
+                        <p:ajax event="rowEdit" listener="#{rowEdit}" update=":dataViewTable:rid"/>
+                        <p:ajax event="rowEditCancel" listener="#{rowCancel}" update=":dataViewTable:rid"/>
+                    </ui:insert>
+                </p:dataTable>
+            </div>
+        </h:form>
+
+    </ui:define>
+</ui:composition>
+</html>

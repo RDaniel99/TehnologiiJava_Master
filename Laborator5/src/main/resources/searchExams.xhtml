@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:body>
+
+    <ui:composition template="/templates/dataviewSearch.xhtml">
+
+        <ui:param name="function" value="#{examBean.getExamListPresentationBySearchCriterias(search)}"/>
+        <ui:param name="function2" value="#{examBean.getExamListWritten()}"/>
+
+
+        <ui:define name="dataview">
+
+            <p:column headerText="Id">
+                <h:outputText value="#{var.id}"/>
+            </p:column>
+
+            <p:column headerText="Type">
+                <h:outputText value="Presentation"/>
+            </p:column>
+
+            <p:column headerText="Name">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{var.name}"/>
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText id="name2" value="#{var.name}"/>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Day In Exam Session">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{var.dayInExamSession}"/>
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputNumber id="dayInExamSession2" value="#{var.dayInExamSession}">
+                        </p:inputNumber>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Hour">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{var.hour.hour}"/>
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputNumber minValue="0" maxValue="59" id="hour2" value="#{var.hour.hour}">
+                        </p:inputNumber>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Minutes">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{var.hour.minutes}"/>
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputNumber minValue="0" maxValue="23" id="minute2" value="#{var.hour.minutes}">
+                        </p:inputNumber>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Duration">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{var.duration}"/>
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputNumber id="duration2" value="#{var.duration}">
+                        </p:inputNumber>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Number Of Slides">
+                <h:outputText value="#{var.numberOfSlides}"/>
+            </p:column>
+
+            <p:column>
+                <p:commandButton icon="ui-icon-trash"
+                                 title="Delete this exam"
+                                 actionListener="#{examBean.remove(var)}"
+                                 ajax="false"/>
+            </p:column>
+
+        </ui:define>
+
+        <ui:define name="dataview2">
+
+            <p:column headerText="Id">
+                <h:outputText value="#{var.id}"/>
+            </p:column>
+
+            <p:column headerText="Type">
+                <h:outputText value="Presentation"/>
+            </p:column>
+
+            <p:column headerText="Name">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{var.name}"/>
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText id="name" value="#{var.name}"/>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Day In Exam Session">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{var.dayInExamSession}"/>
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputNumber id="dayInExamSession" value="#{var.dayInExamSession}">
+                        </p:inputNumber>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Hour">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{var.hour.hour}"/>
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputNumber minValue="0" maxValue="59" id="hour" value="#{var.hour.hour}">
+                        </p:inputNumber>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Minutes">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{var.hour.minutes}"/>
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputNumber minValue="0" maxValue="23" id="minute" value="#{var.hour.minutes}">
+                        </p:inputNumber>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Duration">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{var.duration}"/>
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputNumber id="duration" value="#{var.duration}">
+                        </p:inputNumber>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Allows Resources?">
+                <h:outputText value="#{var.allowsResources}"/>
+            </p:column>
+
+            <p:column>
+                <p:commandButton icon="ui-icon-trash"
+                                 title="Delete this exam"
+                                 actionListener="#{examBean.remove(var)}"
+                                 ajax="false"/>
+            </p:column>
+
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

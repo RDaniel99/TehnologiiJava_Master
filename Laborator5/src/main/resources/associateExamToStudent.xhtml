@@ -1,0 +1,132 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+<h:head>
+
+</h:head>
+<h:body>
+    <ui:composition template="/page.xhtml">
+        <ui:define name="content">
+            <h:form>
+                <h2>Exams Presentations</h2>
+                <div class="card">
+                    <p:dataTable var="exam" value="#{examBean.getExamListPresentation()}">
+                        <p:column headerText="Id">
+                            <h:outputText value="#{presentation.id}"/>
+                        </p:column>
+
+                        <p:column headerText="Type">
+                            <h:outputText value="Presentation"/>
+                        </p:column>
+
+                        <p:column headerText="Name">
+                            <h:outputText value="#{exam.name}"/>
+                        </p:column>
+
+                        <p:column headerText="Day In Exam Session">
+                            <h:outputText value="#{exam.dayInExamSession}"/>
+                        </p:column>
+
+                        <p:column headerText="Hour">
+                            <h:outputText value="#{exam.hour.hour}"/>
+                        </p:column>
+
+                        <p:column headerText="Minutes">
+                            <h:outputText value="#{exam.hour.minutes}"/>
+                        </p:column>
+
+                        <p:column headerText="Duration">
+                            <h:outputText value="#{exam.duration}"/>
+                        </p:column>
+
+                        <p:column headerText="Number Of Slides">
+                            <h:outputText value="#{exam.numberOfSlides}"/>
+                        </p:column>
+
+                    </p:dataTable>
+                </div>
+            </h:form>
+
+            <h:form>
+                <h2>Exams Written</h2>
+                <div class="card">
+                    <p:dataTable var="exam" value="#{examBean.getExamListWritten()}">
+                        <p:column headerText="Id">
+                            <h:outputText value="#{exam.id}"/>
+                        </p:column>
+
+                        <p:column headerText="Type">
+                            <h:outputText value="Written"/>
+                        </p:column>
+
+                        <p:column headerText="Name">
+                            <h:outputText value="#{exam.name}"/>
+                        </p:column>
+
+                        <p:column headerText="Day In Exam Session">
+                            <h:outputText value="#{exam.dayInExamSession}"/>
+                        </p:column>
+
+                        <p:column headerText="Hour">
+                            <h:outputText value="#{exam.hour.hour}"/>
+                        </p:column>
+
+                        <p:column headerText="Minutes">
+                            <h:outputText value="#{exam.hour.minutes}"/>
+                        </p:column>
+
+                        <p:column headerText="Duration">
+                            <h:outputText value="#{exam.duration}"/>
+                        </p:column>
+
+                        <p:column headerText="Number Of Slides">
+                            <h:outputText value="#{var.numberOfSlides}"/>
+                        </p:column>
+
+                    </p:dataTable>
+                </div>
+            </h:form>
+
+            <h:form>
+                <h2>Students</h2>
+                <div class="card">
+                    <p:dataTable var="student" value="#{studentBean.getStudentList()}">
+
+                        <p:column headerText="Id">
+                            <h:outputText value="#{student.id}"/>
+                        </p:column>
+
+                        <p:column headerText="Name">
+                            <h:outputText value="#{student.name}"/>
+                        </p:column>
+
+
+                    </p:dataTable>
+                </div>
+            </h:form>
+
+            <h:form id="add">
+                <h:panelGrid columns="4" cellpadding="5" style="margin: 0 auto;">
+                    <p:outputLabel for="listaIdStudents" value="Student ID"/>
+                    <p:selectOneMenu id="listaIdStudents" value="#{examStudentBean.studentId}" required="true">
+                        <f:selectItems value="#{studentBean.getStudentIds()}" var="st"
+                                       itemValue="#{st}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel for="listaIdExams" value="Exam ID"/>
+                    <p:selectOneMenu id="listaIdExams" value="#{examStudentBean.examId}" required="true">
+                        <f:selectItems value="#{examBean.getExamIds()}" var="ex"
+                                       itemValue="#{ex}"/>
+                    </p:selectOneMenu>
+
+                    <p:commandButton value="Create" action="#{examStudentBean.saveExamStudent()}">
+                    </p:commandButton>
+                </h:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

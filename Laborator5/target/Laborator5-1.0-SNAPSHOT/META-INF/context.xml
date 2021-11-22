@@ -1,0 +1,10 @@
+<Context>
+
+    <Resource name="jdbc/lab5" auth="Container"
+              type="javax.sql.ConnectionPoolDataSource"
+              maxActive="100" maxIdle="30" maxWait="10000"
+              username="postgres" password="postgres"
+              driverClassName="org.postgresql.ds.PGConnectionPoolDataSource"
+              url="jdbc:postgresql://localhost/lab5"/>
+
+</Context>

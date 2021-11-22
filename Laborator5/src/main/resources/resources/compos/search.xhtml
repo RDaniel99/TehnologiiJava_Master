@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+      xmlns:p="http://primefaces.org/ui">
+<f:view>
+    <composite:interface>
+        <composite:attribute name="searchLabel" required="true"/>
+        <composite:attribute name="selectedStudent" required="true"/>
+        <composite:attribute name="autocomplete" required="true" method-signature="java.util.List autocomplete(java.lang.String)"/>
+        <composite:attribute name="studentName" required="true"/>
+        <composite:attribute name="studentValue" required="true"/>
+    </composite:interface>
+
+    <composite:implementation>
+        <div class="p-field p-col-12 p-md-4">
+            <p:outputLabel value="Search " for="@next"/>
+            <p:autoComplete id="#{cc.attrs.searchLabel}" value="#{cc.attrs.selectedStudent}"
+                            completeMethod="#{cc.attrs.autocomplete}"
+                            var="student" itemLabel="#{cc.attrs.studentName}" itemValue="#{cc.attrs.studentValue}"
+                            converter="#{studentConverter}" forceSelection="true" scrollHeight="250">
+            <p:ajax event="itemSelect" listener="#{autocomplete.onItemSelect}" update="dataViewTable"/>
+            </p:autoComplete>
+        </div>
+    </composite:implementation>
+</f:view>
+</html>
