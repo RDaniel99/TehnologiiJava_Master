@@ -1,5 +1,10 @@
 # TehnologiiJava_Master
 
+## Laborator 5: Finalizat complet
+
+Acesta se regaseste in Folderul **Laborator5.1.**
+Din anumite motive, nu puteam sterge folderul Laborator5, acolo s-a produs o eroare de configurari si nu ma puteam conecta la baza de date printr-un connection pool si am fost nevoit sa refac proiectul de la zero.
+
 ## Laborator 3: Finalizat complet
 
 Punctul 1:
