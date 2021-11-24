@@ -1,0 +1,50 @@
+package com.model;
+
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Entity
+@Table(name = "resource")
+@NamedQueries({
+        @NamedQuery(query = "Select r from Resource r", name = "Resource.findAll")
+})
+public class Resource implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "id")
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "available")
+    private Long available;
+
+    public Resource() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Long getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(Long available) {
+        this.available = available;
+    }
+}

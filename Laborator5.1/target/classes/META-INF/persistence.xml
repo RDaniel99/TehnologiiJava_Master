@@ -4,9 +4,8 @@
         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
         version="2.2"
 >
-    <persistence-unit name="JPAExample" transaction-type="RESOURCE_LOCAL">
-
-        <non-jta-data-source>jdbc/lab5</non-jta-data-source>
-        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <persistence-unit name="JPAExample" transaction-type="JTA">
+        <jta-data-source>jdbc/lab5</jta-data-source>
+        <!--<exclude-unlisted-classes>false</exclude-unlisted-classes>-->
     </persistence-unit>
 </persistence>

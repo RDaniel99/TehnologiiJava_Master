@@ -30,7 +30,7 @@ public class ExamRepositoryShould {
 
         em = mock(EntityManager.class);
         Query query = mock(Query.class);
-        repository = new ExamRepository(em);
+        repository = new ExamRepository();//em);
 
         when(em.createNamedQuery(any())).thenReturn(query);
         when(query.getResultList()).thenReturn(Collections.singletonList(expected));
@@ -52,7 +52,7 @@ public class ExamRepositoryShould {
         em = mock(EntityManager.class);
         EntityTransaction transaction = mock(EntityTransaction.class);
         when(em.getTransaction()).thenReturn(transaction);
-        repository = new ExamRepository(em);
+        repository = new ExamRepository();//em);
 
 
         // execute
@@ -74,7 +74,7 @@ public class ExamRepositoryShould {
         em = mock(EntityManager.class);
         EntityTransaction transaction = mock(EntityTransaction.class);
         when(em.getTransaction()).thenReturn(transaction);
-        repository = new ExamRepository(em);
+        repository = new ExamRepository();//em);
 
 
         // execute
@@ -96,7 +96,7 @@ public class ExamRepositoryShould {
         em = mock(EntityManager.class);
         EntityTransaction transaction = mock(EntityTransaction.class);
         when(em.getTransaction()).thenReturn(transaction);
-        repository = new ExamRepository(em);
+        repository = new ExamRepository();//em);
 
 
         // execute

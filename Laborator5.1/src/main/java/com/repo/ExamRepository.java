@@ -4,19 +4,24 @@ import com.model.Exam;
 import com.model.Presentation;
 import com.model.WrittenTest;
 
-import javax.faces.bean.ManagedBean;
+import javax.ejb.Stateless;
 import javax.persistence.*;
 import java.util.List;
 
-@ManagedBean
+@Stateless
 public class ExamRepository {
 
-    private final EntityManager em;
+    @PersistenceContext
+    private EntityManager em;
 
-    public ExamRepository(EntityManager entityManager) {
+    public ExamRepository() {
+
+    }
+
+    /*public ExamRepository(EntityManager entityManager) {
 
         this.em = entityManager;
-    }
+    }*/
 
     public List getAllExams() {
 
@@ -43,46 +48,46 @@ public class ExamRepository {
 
     public void deleteExam(Exam exam) {
 
-        em.getTransaction().begin();
+        //em.getTransaction().begin();
 
         em.remove(exam);
 
-        em.getTransaction().commit();
+        //em.getTransaction().commit();
     }
 
     public void updateTest(WrittenTest exam) {
 
-        em.getTransaction().begin();
+        //em.getTransaction().begin();
 
         em.persist(exam);
 
-        em.getTransaction().commit();
+        //em.getTransaction().commit();
     }
 
     public void updatePresentation(Presentation exam) {
 
-        em.getTransaction().begin();
+        //em.getTransaction().begin();
 
         em.persist(exam);
 
-        em.getTransaction().commit();
+        //em.getTransaction().commit();
     }
 
     public void savePresentation(Presentation presentation) {
 
-        em.getTransaction().begin();
+        //em.getTransaction().begin();
 
         em.persist(presentation);
 
-        em.getTransaction().commit();
+        //em.getTransaction().commit();
     }
 
     public void saveTest(WrittenTest test) {
 
-        em.getTransaction().begin();
+        //em.getTransaction().begin();
 
         em.persist(test);
 
-        em.getTransaction().commit();
+        //em.getTransaction().commit();
     }
 }

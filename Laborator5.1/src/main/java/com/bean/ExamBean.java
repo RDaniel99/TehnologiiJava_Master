@@ -6,6 +6,7 @@ import com.repo.ExamRepository;
 import com.model.Exam;
 import org.primefaces.event.RowEditEvent;
 
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -16,20 +17,18 @@ import javax.persistence.Persistence;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Bean for the operations regarding a student
- */
 @ManagedBean(name = "examBean")
 @ViewScoped
 public class ExamBean implements Serializable {
 
+    @EJB
     ExamRepository repository;
 
     public ExamBean() {
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("JPAExample");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        this.repository = new ExamRepository(entityManager);
+        //this.repository = new ExamRepository(entityManager);
     }
 
 

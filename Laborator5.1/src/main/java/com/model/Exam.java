@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
-@Entity(name = "exam")
+@Entity
 @Table(name = "exam")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(
@@ -15,8 +15,8 @@ import java.util.Set;
         discriminatorType = DiscriminatorType.STRING
 )
 @NamedQueries({
-        @NamedQuery(query = "Select s from exam s", name = "Exam.findAll"),
-        @NamedQuery(query = "Select s from exam s where s.type = :disc", name = "Exam.findAllByType")
+        @NamedQuery(query = "Select s from Exam s", name = "Exam.findAll"),
+        @NamedQuery(query = "Select s from Exam s where s.type = :disc", name = "Exam.findAllByType")
 })
 public abstract class Exam implements Serializable {
 
