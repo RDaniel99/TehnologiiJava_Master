@@ -50,6 +50,10 @@ public class ExamRepository {
 
         //em.getTransaction().begin();
 
+        if(!em.contains(exam)) {
+            exam = em.merge(exam);
+        }
+
         em.remove(exam);
 
         //em.getTransaction().commit();
@@ -59,7 +63,7 @@ public class ExamRepository {
 
         //em.getTransaction().begin();
 
-        em.persist(exam);
+        em.merge(exam);
 
         //em.getTransaction().commit();
     }
@@ -68,7 +72,7 @@ public class ExamRepository {
 
         //em.getTransaction().begin();
 
-        em.persist(exam);
+        em.merge(exam);
 
         //em.getTransaction().commit();
     }

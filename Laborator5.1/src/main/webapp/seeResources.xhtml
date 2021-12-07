@@ -1,0 +1,60 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+<h:head>
+</h:head>
+<h:body>
+
+    <ui:composition template="/templates/dataview.xhtml">
+
+        <ui:param name="function" value="#{resourceBean.getAllResources()}"/>
+        <ui:param name="rowEdit" value="#{resourceBean.onRowUpdate}"/>
+        <ui:param name="rowCancel" value="#{resourceBean.onRowCancel}"/>
+
+        <ui:define name="dataview">
+
+            <p:column headerText="Id">
+                <h:outputText value="#{var.id}"/>
+            </p:column>
+
+            <p:column headerText="Name">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{var.name}"/>
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText id="name" value="#{var.name}"/>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Availables">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{var.available}"/>
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText id="available" value="#{var.available}"/>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column>
+                <p:commandButton
+                        title="Delete resource"
+                        actionListener="#{resourceBean.deleteResource(var)}"
+                        ajax="false"/>
+
+            </p:column>
+            <p:column>
+                <p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
+            </p:column>
+
+        </ui:define>
+
+    </ui:composition>
+</h:body>
+</html>

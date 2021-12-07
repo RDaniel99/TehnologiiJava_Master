@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+<h:head>
+
+</h:head>
+<h:body>
+    <ui:composition template="/templates/createexam.xhtml">
+
+        <ui:param name="function" value="#{cache.save(examresource)}"/>
+
+        <ui:define name="formcontent">
+
+            <p>Create Exam-Resource:</p>
+            <p:outputLabel for="examId" value="examId"/>
+            <p:inputNumber minValue="0" id="examId" value="#{examresource.examId}" required="true"/>
+            <p:message for="examId"/>
+
+            <p:outputLabel for="resourceId" value="resourceId"/>
+            <p:inputNumber minValue="0" id="resourceId" value="#{examresource.resourceId}" required="true"/>
+            <p:message for="resourceId"/>
+        </ui:define>
+
+    </ui:composition>
+</h:body>
+</html>

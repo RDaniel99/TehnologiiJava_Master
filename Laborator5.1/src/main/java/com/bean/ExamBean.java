@@ -24,13 +24,7 @@ public class ExamBean implements Serializable {
     @EJB
     ExamRepository repository;
 
-    public ExamBean() {
-
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("JPAExample");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        //this.repository = new ExamRepository(entityManager);
-    }
-
+    public ExamBean() { }
 
     public List<Exam> getAllExams() throws Exception {
 

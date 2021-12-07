@@ -1,12 +1,16 @@
 package com.model;
 
+import javax.faces.bean.ManagedBean;
 import javax.persistence.*;
 import java.io.Serializable;
 
+@ManagedBean(name = "rresource")
 @Entity
 @Table(name = "resource")
 @NamedQueries({
-        @NamedQuery(query = "Select r from Resource r", name = "Resource.findAll")
+        @NamedQuery(query = "Select r from Resource r", name = "Resource.findAll"),
+        @NamedQuery(query = "Select r from Resource r where r.available > 0", name = "Resource.getAvailable"),
+        @NamedQuery(query = "Select r from Resource r where r.id = :id", name = "Resource.findById")
 })
 public class Resource implements Serializable {
 
