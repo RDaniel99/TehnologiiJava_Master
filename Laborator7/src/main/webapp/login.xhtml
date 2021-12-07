@@ -10,17 +10,17 @@
     <h:form>
         <h3>Login</h3>
         <h:outputText value="Username" />
-        <h:inputText id="username" value="#{login.user}"></h:inputText>
-        <h:message for="username"></h:message>
-        <br></br><br></br>
+        <h:inputText id="username" value="#{login.user}"/>
+        <h:message for="username"/>
+        <br/><br/>
 
         <h:outputText value="Password" />
-        <h:inputSecret id="password" value="#{login.pwd}"></h:inputSecret>
-        <h:message for="password"></h:message>
-        <br></br><br></br>
+        <h:inputSecret id="password" value="#{login.pwd}"/>
+        <h:message for="password"/>
+        <br/><br/>
 
         <h:commandButton action="#{login.validateUsernamePassword}"
-                         value="Login"></h:commandButton>
+                         value="Login"/>
         <p:messages autoUpdate="true" />
     </h:form>
 </h:body>

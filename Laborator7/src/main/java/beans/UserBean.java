@@ -1,6 +1,8 @@
 package beans;
 
+import models.User;
 import repo.UserRepository;
+import utils.SessionUtils;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -24,5 +26,12 @@ public class UserBean implements Serializable {
     public boolean validate(String username, String password) {
 
         return repo.validate(username, password);
+    }
+
+    public User.UserType getUserTypeForUserInSession() {
+
+        String username = SessionUtils.getUsername();
+        if(username == null || username.isEmpty()) return null;
+        return repo.getTypeOfUser(username);
     }
 }

@@ -1,13 +1,16 @@
 package models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "users")
 @NamedQueries({
     @NamedQuery(query = "Select u from User u", name = "User.findAll"),
-    @NamedQuery(query = "Select u from User u where u.name = :username and u.password = :password", name = "User.findLogin")
+    @NamedQuery(query = "Select u from User u where u.name = :username and u.password = :password", name = "User.findLogin"),
+    @NamedQuery(query = "Select u from User u where u.name = :username", name = "User.findByName")
 })
 public class User implements Serializable {
 
@@ -21,32 +24,28 @@ public class User implements Serializable {
             return this == ADMIN;
         }
 
-        public boolean isAuthor() {
-            return this == AUTHOR;
-        }
-
-        public boolean isReviewer() {
-            return this == REVIEWER;
-        }
-
-        public boolean isBasic() {
-            return this == BASIC;
-        }
+        public boolean canPublish() {return this == ADMIN || this == AUTHOR;}
     };
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "id")
     @Column(name = "id")
+    @NotNull
     private Long id;
 
     @Column(name = "name")
+    @NotNull
+    @Size(max = 50, message = "Name must be at most 50 characters")
     private String name;
 
     @Column(name = "rights")
     @Enumerated(EnumType.STRING)
+    @NotNull
     private UserType rights;
 
     @Column(name = "password")
+    @NotNull
+    @Size(max = 50, message = "Password must be at most 50 characters")
     private String password;
 
     public User() {}

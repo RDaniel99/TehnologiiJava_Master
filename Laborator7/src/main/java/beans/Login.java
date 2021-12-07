@@ -59,8 +59,7 @@ public class Login implements Serializable {
     public String validateUsernamePassword() throws IOException {
         boolean valid = bean.validate(user, pwd);
         if (valid) {
-            HttpSession session = SessionUtils.getSession();
-            session.setAttribute("username", user);
+            SessionUtils.setUsername(user);
             return "welcome";
         } else {
             FacesContext.getCurrentInstance().addMessage(
@@ -70,12 +69,5 @@ public class Login implements Serializable {
                             "Please enter correct username and Password"));
             return "login";
         }
-    }
-
-    //logout event, invalidate session
-    public String logout() {
-        HttpSession session = SessionUtils.getSession();
-        session.invalidate();
-        return "login";
     }
 }

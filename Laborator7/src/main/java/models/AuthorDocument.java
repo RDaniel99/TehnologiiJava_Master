@@ -1,6 +1,7 @@
 package models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
@@ -16,9 +17,11 @@ public class AuthorDocument implements Serializable {
     private Long id;
 
     @Column(name = "authorid")
+    @NotNull
     private String authorId;
 
     @Column(name = "documentid")
+    @NotNull
     private String documentId;
 
     public AuthorDocument() {}
