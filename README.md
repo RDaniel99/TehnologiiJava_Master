@@ -1,5 +1,9 @@
 # TehnologiiJava_Master
 
+## Laborator 6: Finalizat
+Acesta se regaseste in Folderul **Laborator5.1**
+Pentru a evita anumite erori de configurare, am continuat laboratorul 6 in acelasi folder cu Laboratorul 5 si totodata Laboratorul 6 era o continuare al Laboratorului 5.
+
 ## Laborator 5: Finalizat complet
 
 Acesta se regaseste in Folderul **Laborator5.1.**
