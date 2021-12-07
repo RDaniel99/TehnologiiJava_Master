@@ -30,7 +30,6 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "id")
     @Column(name = "id")
-    @NotNull
     private Long id;
 
     @Column(name = "name")

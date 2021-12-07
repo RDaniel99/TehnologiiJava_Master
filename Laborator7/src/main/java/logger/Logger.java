@@ -6,8 +6,8 @@ import javax.interceptor.InvocationContext;
 public class Logger {
 
     @AroundInvoke
-    public Object loggingInterceptor(InvocationContext ictx) {
+    public Object loggingInterceptor(InvocationContext ictx) throws Exception {
         System.out.println("logger.Logger works");
-        return null;
+        return ictx.proceed();
     }
 }
