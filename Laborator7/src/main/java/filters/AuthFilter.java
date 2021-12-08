@@ -51,7 +51,8 @@ public class AuthFilter implements Filter {
             checkIfCanPublish(request, response);
         }
 
-        if(!alreadyRedirected && URI.indexOf("/createUser.xhtml") > 0) {
+        if((!alreadyRedirected && URI.indexOf("/createUser.xhtml") > 0) ||
+                (!alreadyRedirected && URI.indexOf("/viewDocuments.xhtml") > 0)) {
 
             checkIfAdmin(request, response);
         }

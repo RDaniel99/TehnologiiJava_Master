@@ -18,11 +18,11 @@ public class AuthorDocument implements Serializable {
 
     @Column(name = "authorid")
     @NotNull
-    private String authorId;
+    private Long authorId;
 
     @Column(name = "documentid")
     @NotNull
-    private String documentId;
+    private Long documentId;
 
     public AuthorDocument() {}
 
@@ -34,19 +34,19 @@ public class AuthorDocument implements Serializable {
         this.id = id;
     }
 
-    public String getAuthorId() {
+    public Long getAuthorId() {
         return authorId;
     }
 
-    public void setAuthorId(String authorId) {
+    public void setAuthorId(Long authorId) {
         this.authorId = authorId;
     }
 
-    public String getDocumentId() {
+    public Long getDocumentId() {
         return documentId;
     }
 
-    public void setDocumentId(String documentId) {
+    public void setDocumentId(Long documentId) {
         this.documentId = documentId;
     }
 }

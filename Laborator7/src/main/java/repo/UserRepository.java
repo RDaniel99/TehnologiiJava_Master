@@ -4,6 +4,7 @@ import logger.Logger;
 import models.User;
 
 
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Named;
 import javax.interceptor.Interceptors;
@@ -15,7 +16,8 @@ import java.util.List;
 
 @Named
 @Stateless
-public class UserRepository {
+@LocalBean
+public class UserRepository implements RepositoryBase {
 
     @PersistenceContext
     private EntityManager em;
@@ -24,6 +26,7 @@ public class UserRepository {
 
     @Transactional
     @Interceptors(Logger.class)
+    @Override
     public void save(User user) {
 
         em.persist(user);

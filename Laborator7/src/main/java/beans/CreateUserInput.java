@@ -5,6 +5,7 @@ import models.User;
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import java.io.Serializable;
 
 @ManagedBean(name = "createUserInput")
@@ -23,8 +24,9 @@ public class CreateUserInput implements Serializable {
         this.bean = bean;
     }
 
-    public UserBean getBean() {
-        return bean;
+    public void store() {
+
+        bean.save(this);
     }
 
     public String getName() {
