@@ -34,4 +34,20 @@ public class DocumentRepository {
 
         return query.getResultList();
     }
+
+    public void delete(Document document) {
+
+        if(!em.contains(document)) {
+            document = em.merge(document);
+        }
+        em.remove(document);
+    }
+
+    public Document update(Document document) {
+
+        em.merge(document);
+        em.flush();
+
+        return document;
+    }
 }

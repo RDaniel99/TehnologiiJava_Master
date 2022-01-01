@@ -31,4 +31,8 @@ public class DocumentBean implements Serializable {
 
         return repo.retrieve();
     }
+
+    public DocumentRepository getRepo() {
+        return repo;
+    }
 }

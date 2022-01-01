@@ -3,6 +3,7 @@ package beans;
 import models.AuthorDocument;
 import models.Document;
 import producers.ISBNProducer;
+import services.AddDocumentService;
 import utils.PublishedDocument;
 import utils.SessionUtils;
 
@@ -24,6 +25,8 @@ public class CreateDocumentInput implements Serializable {
     @Inject
     private AuthorDocumentBean authorDocumentBean;
 
+    private AddDocumentService addDocumentService;
+
     @Inject
     Event<PublishedDocument> event;
 
@@ -32,8 +35,6 @@ public class CreateDocumentInput implements Serializable {
     private String authors;
     private String isbn;
     private Long id;
-
-    public CreateDocumentInput() {}
 
     public void store() {
 
@@ -56,7 +57,8 @@ public class CreateDocumentInput implements Serializable {
         isbn = ISBNProducer.produceISBN();
         document.setIsbn(isbn);
 
-        id = documentBean.save(document).getId();
+        addDocumentService = new AddDocumentService(documentBean.getRepo());
+        id = addDocumentService.save(document).getId();
     }
 
     private void storeRelations() {
