@@ -1,5 +1,12 @@
 # TehnologiiJava_Master
 
+## Laborator 8: Finalizat complet
+
+Acesta se regaseste in Folderul **Laborator7**
+La primul punct am avut patru servicii CRUD pentru Documente folosind JAX-RS. Acestea se regasesc in fisierele AddDocumentServlet, DeleteDocumentServlet, GetDocumentServlet, UpdateDocumentServlet. Pentru a putea folosi JAX-RS, a fost nevoie si de adaugarea unei clase noi prin care se pornesc serviciile de JAX-RS. Acesta se numeste RestApplication.java.
+La al doilea punct am avut de facut un filtru ce joaca rol de cache pentru serviciul de GetDocuments, acesta se regaseste in package-ul de filters, in fisierul ViewDocumentsFilter.java.
+Al treilea punct a fost de construit un utilitar prin intermediul caruia, in cazul in care documentele ar avea referinte alte documente, sa le putem ordona cronologic. Pentru asta, am implementat algoritmul de sortare topologica in clasa DocumentsDependencySolver, care a fost testata in DocumentDependencySolverShould. Pentru adaugarea unei dependinte de la documentul cu id-ul A la documentul cu id-ul B (insemnand ca A are ca si referinta pe B), se foloseste metoda addEdge(fromDocumentId, toDocumentId). Inainte de a adauga muchii intre noduri (=documente), documentele (=nodurile) trebuie adaugate prin addId(documentId).
+
 ## Laborator 6: Finalizat
 Acesta se regaseste in Folderul **Laborator5.1**
 Pentru a evita anumite erori de configurare, am continuat laboratorul 6 in acelasi folder cu Laboratorul 5 si totodata Laboratorul 6 era o continuare al Laboratorului 5.
